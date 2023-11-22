@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\dataAnggotaController;
+use App\Http\Controllers\DataPesanaController;
+use App\Http\Controllers\tambahmenuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +32,25 @@ Route::get('/tambahMenu', function(){
 Route::get('/tambahAnggota', function(){
     return view('admin.tambahAnggota');
 });
+
+Route::prefix('/')->controller(DataPesanaController::class)->group(function () {
+    Route::get('/', 'getAllData1');
+
+});
+Route::prefix('dataPesanan/')->controller(DataPesanaController::class)->group(function () {
+    Route::get('/', 'getAllData');
+    Route::post('/createdatapesanan', 'createData')->name('tambahdata');
+    Route::delete('/deletedatapesanan/{id}' ,'deleteData')->name('hapus');
+});
+
+Route::prefix('/tambahAnggota')->controller(dataAnggotaController::class)->group(function () {
+    Route::get('/', 'getAllData2');
+    Route::post('/createanggota', 'createData2')->name('tambahdataanggota');
+    Route::delete('/deleteanggota/{id}' ,'deleteData2')->name('hapusdataanggota');
+});
+
+// Route::prefix('/tambahmenu')->controller(tambahmenuController::class)->group(function (){
+//     Route::get('/', 'getAllDataMenu');
+//     Route::post('/createmenu', 'tambahdatamenu')->name('tambahdatamenu');
+//     Route::delete('/deletemenu/{id}', 'hapusdatamenu')->name('hapusdatamenu');
+// });
