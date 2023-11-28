@@ -26,10 +26,6 @@
                                 data-bs-target="#staticBackdrop"><i class="fa fa-plus" aria-hidden="true"></i>
                                 Tambah Data
                             </button>
-                            <button type="submit" class="badge badge-xl bg-gradient-success border-0 ms-auto "><i
-                                    class="fa fa-file-excel-o fa-lg" aria-hidden="true"></i>
-                            </button>
-
                         </div>
                         <div class="card-body px-0 pt-0 pb-2 mt-2">
                             <div class="table-responsive">

@@ -16,29 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/aa', function () {
-    return view('welcome');
-});
 
-Route::get('/', function(){
+Route::get('/dasboard', function(){
     return view('admin.dashboard');
 });
-Route::get('/dataPesanan', function(){
-    return view('admin.dataPesanan');
-});
-Route::get('/tambahMenu', function(){
-    return view('admin.tambahMenu');
-});
-Route::get('/tambahAnggota', function(){
-    return view('admin.tambahAnggota');
+
+// Route::get('/tambahmenu', function(){
+//     return view('admin.');
+// });
+
+Route::get('/tambahmenu', function(){
+    return view('admin/tambahMenu');
 });
 
-Route::prefix('/')->controller(DataPesanaController::class)->group(function () {
-    Route::get('/', 'getAllData1');
-
-});
 Route::prefix('dataPesanan/')->controller(DataPesanaController::class)->group(function () {
     Route::get('/', 'getAllData');
+    Route::get('/dasboard', 'getAllData2');
     Route::post('/createdatapesanan', 'createData')->name('tambahdata');
     Route::delete('/deletedatapesanan/{id}' ,'deleteData')->name('hapus');
 });
@@ -49,8 +42,12 @@ Route::prefix('/tambahAnggota')->controller(dataAnggotaController::class)->group
     Route::delete('/deleteanggota/{id}' ,'deleteData2')->name('hapusdataanggota');
 });
 
-// Route::prefix('/tambahmenu')->controller(tambahmenuController::class)->group(function (){
-//     Route::get('/', 'getAllDataMenu');
-//     Route::post('/createmenu', 'tambahdatamenu')->name('tambahdatamenu');
-//     Route::delete('/deletemenu/{id}', 'hapusdatamenu')->name('hapusdatamenu');
-// });
+Route::prefix('/tambahMenu')->controller(tambahmenuController::class)->group(function () {
+    Route::get('/', 'getAllDataMenu3');
+    Route::post('/createmenu', 'tambahdatamenu3')->name('tambahdatamenu');
+    Route::get('/editdatamenu/{id}', 'ditdatamenu3')->name('editdatamenu');
+    Route::post('/updatedatamenu/{id}', 'updatedatamenu3')->name('updatedatamenu');
+    Route::delete('/deletemenu/{id}' ,'hapusdatamenu3')->name('hapusdatamenu');
+});
+
+
