@@ -141,15 +141,27 @@ public function updatedatamenu3(Request $request, $id)
     }
 }
 
+// public function hapusdatamenu3($id)
+// {
+//     $data = tambahmenuModels::where('id', $id)->first();
+//     $data->delete();
+//     Alert::success('Hapus data sukses');
+//     return redirect()->back();
+// }
 
+public function hapusdatamenu3($id)
+{
+    $data = tambahmenuModels::where('id', $id)->first();
 
-    public function hapusdatamenu3($id)
-    {
-        $data = tambahmenuModels::where('id', $id)->first();
-        $data->delete();
-        Alert::success('Hapus data sukses');
-        return redirect()->back();
-    }
+    // Menampilkan konfirmasi menggunakan SweetAlert
+    return $this->confirmDelete($data);
+}
+
+private function confirmDelete($data)
+{
+    return view('konfirmasi-hapus', compact('data'));
+}
+
 }
 
 

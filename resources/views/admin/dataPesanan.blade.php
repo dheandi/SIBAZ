@@ -16,7 +16,6 @@
             </div>
         </nav>
         <!-- End Navbar -->
-
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
@@ -103,7 +102,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Tambah Pesanan</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close"  aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -143,7 +142,6 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
-
                             </div>
                         </form>
                     </div>
@@ -153,5 +151,4 @@
         </div>
     </main>
     @include('sweetalert::alert')
-
 @endsection

@@ -28,7 +28,7 @@
                         </div>
                         <div class="card-body px-0 pt-0 pb-2 mt-2">
                             <div class="table-responsive">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="example1" class="table table-bordered table-striped text-center">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -39,48 +39,56 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                    @if (!empty($data) && count($data) > 0)
+                                        @php
+                                            $no = 1;
+                                        @endphp
 
-                                    @if (count($data) > 0)
-                                        <tbody>
-                                            @php
-                                                $no = 1;
-                                            @endphp
+                                        @forelse ($data as $d)
+                                            <tr class="odd">
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $d->nama_menu }}</td>
+                                                <td>{{ $d->deskripsi }}</td>
+                                                <td>{{ $d->harga }}</td>
+                                                <td>
+                                                    <img src="/uploads/datamenu/{{ $d->gambar }}" width="80px" height="80px">
+                                                </td>
 
-                                            @foreach ($data as $d)
-                                                <tr class="odd">
-                                                    <td>{{ $no++ }}</td>
-                                                    <td>{{ $d->nama_menu }}</td>
-                                                    <td>{{ $d->deskripsi }}</td>
-                                                    <td>{{ $d->harga }}</td>
-                                                    <td>
-                                                        <img src="/uploads/datamenu/{{ $d->gambar }}" width="50px"
-                                                            height="50px">
-                                                    </td>
+                                                <td class=" d-flex justify-content-center">
+                                                    <div class="row">
+                                                        <div class="col-md-5 mb-4">
+                                                            <form action="{{ route('updatedatamenu', $d->id) }}" method="POST" enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('POST')
+                                                                <button type="button" class="btn btn-warning btn-block" data-bs-toggle="modal" data-bs-target="#editModal{{ $d->id }}">
+                                                                    <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit
+                                                                </button>
+                                                            </form>
+                                                        </div>
 
-                                                    <td>
-                                                        <form action="{{ route('updatedatamenu', $d->id) }}" method="POST" enctype="multipart/form-data">
-                                                            @csrf
-                                                            @method('POST')
-                                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal{{ $d->id }}">
-                                                                <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
-                                                            </button>
-                                                        </form>
-
-                                                        <form action="{{ route('hapusdatamenu', $d->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    @else
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="9" class="text-center">Data Not found</td>
+                                                        <div class="col-md-5 mb-4">
+                                                            <form action="{{ route('hapusdatamenu', $d->id) }}" method="POST" id="deleteForm{{ $d->id }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="button" class="btn btn-danger btn-block deleteBtn" data-target="{{ $d->id }}">
+                                                                    <i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> Hapus
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                        </tfoot>
+                                        @empty
+                                        @endforelse
+                                    </tbody>
+                                    </table>
+                                    @else
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="6" class="text-center">Data Not found</td>
+                                        </tr>
+                                    </tfoot>
                                     @endif
                             </div>
                         </div>
@@ -134,7 +142,8 @@
             </div>
         </div>
         </div>
-
+    @isset($data)
+        @forelse ($data as $d)
         <div class="modal fade edit-modal" id="editModal{{ $d->id }}" aria-labelledby="editModalLabel{{ $d->id }}" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -148,7 +157,7 @@
                         <!-- Form Edit Data -->
                         <form method="POST" action="{{ route('updatedatamenu', $d->id) }}" enctype="multipart/form-data">
                             @csrf
-                            <!-- @method('POST') -->
+                            @method('POST')
                             <div class="form-group">
                                 <label for="edit_nama_menu{{ $d->id }}">Nama menu</label>
                                 <input type="text" class="form-control" id="edit_nama_menu{{ $d->id }}" name="nama_menu" value="{{ $d->nama_menu }}">
@@ -180,16 +189,63 @@
                 </div>
             </div>
         </div>
+        @empty
+            {{-- Handle empty state if needed --}}
+        @endforelse
+    @endisset
     </main>
+
+    <script>
+        $(document).ready(function () {
+                    // Inisialisasi DataTables
+                    var table = $('#example1').DataTable();
+
+                    // Tangani tombol tambah data
+                    $('#staticBackdrop').on('hidden.bs.modal', function () {
+                        // Perbarui tabel setelah modal ditutup
+                        table.ajax.reload();
+                        console.log(data);
+                    });
+
+                    // Tangani tombol hapus data
+                    $('.deleteBtn').on('click', function () {
+                        var dataId = $(this).data('target');
+                        // ...
+
+                        // Sesuaikan dengan id modal hapus Anda
+                        $('#deleteModal' + dataId).on('hidden.bs.modal', function () {
+                            // Perbarui tabel setelah modal hapus ditutup
+                            table.ajax.reload();
+                        });
+                    });
+                });
+
+    // Script Hapus data
+        const deleteBtns = document.querySelectorAll('.deleteBtn');
+
+        deleteBtns.forEach(deleteBtn => {
+            deleteBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                const targetId = deleteBtn.getAttribute('data-target');
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin ingin menghapus data?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById(`deleteForm${targetId}`).submit();
+                        
+                        table.ajax.reload();
+                    }
+                });
+            });
+        });
+    </script>
     @include('sweetalert::alert')
 @endsection
-<script>
-     $(document).ready(function () {
-        $('.edit-modal').on('hidden.bs.modal', function (e) {
-            console.log('Modal hidden event triggered.');
-            $(this).find('form')[0].reset();
-        });
-    });
-</script>
-
-
