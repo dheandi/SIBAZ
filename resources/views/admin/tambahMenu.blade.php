@@ -1,4 +1,4 @@
-{{-- @extends('layouts.master')
+@extends('layouts.master')
 
 @section('title')
     TAMBAH MENU | Bazar
@@ -25,10 +25,6 @@
                                 data-bs-target="#staticBackdrop"><i class="fa fa-plus" aria-hidden="true"></i>
                                 Tambah Data
                             </button>
-                            <button type="submit" class="badge badge-xl bg-gradient-success border-0 ms-auto "><i
-                                    class="fa fa-file-excel-o fa-lg" aria-hidden="true"></i>
-                            </button>
-
                         </div>
                         <div class="card-body px-0 pt-0 pb-2 mt-2">
                             <div class="table-responsive">
@@ -40,6 +36,7 @@
                                             <th>Deskripsi</th>
                                             <th>Harga</th>
                                             <th>Gambar</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
 
@@ -61,14 +58,18 @@
                                                     </td>
 
                                                     <td>
+                                                        <form action="{{ route('updatedatamenu', $d->id) }}" method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('POST')
+                                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal{{ $d->id }}">
+                                                                <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
+                                                            </button>
+                                                        </form>
 
                                                         <form action="{{ route('hapusdatamenu', $d->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger"><i
-                                                                    class="fa fa-trash-o fa-fw"
-                                                                    aria-hidden="true"></i></button>
-
+                                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></button>
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -93,7 +94,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Tambah Data menu</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-bs-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -107,7 +108,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <input type="text" class="form-control" id="deskripsi" name="deskripsi">
+                                <textarea class="form-control" id="deskripsi" name="deskripsi"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="harga">Harga</label>
@@ -133,5 +134,62 @@
             </div>
         </div>
         </div>
+
+        <div class="modal fade edit-modal" id="editModal{{ $d->id }}" aria-labelledby="editModalLabel{{ $d->id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel{{ $d->id }}">Edit Data menu</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form Edit Data -->
+                        <form method="POST" action="{{ route('updatedatamenu', $d->id) }}" enctype="multipart/form-data">
+                            @csrf
+                            <!-- @method('POST') -->
+                            <div class="form-group">
+                                <label for="edit_nama_menu{{ $d->id }}">Nama menu</label>
+                                <input type="text" class="form-control" id="edit_nama_menu{{ $d->id }}" name="nama_menu" value="{{ $d->nama_menu }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_deskripsi{{ $d->id }}">Deskripsi</label>
+                                <textarea class="form-control" id="edit_deskripsi{{ $d->id }}" name="deskripsi">{{ $d->deskripsi }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_harga{{ $d->id }}">Harga</label>
+                                <input type="text" class="form-control" id="edit_harga{{ $d->id }}" name="harga" value="{{ $d->harga }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_gambar{{ $d->id }}">Gambar</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="gambar" id="edit_gambar{{ $d->id }}">
+                                        <label class="custom-file-label" for="edit_gambar{{ $d->id }}">Choose file</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
-@endsection --}}
+    @include('sweetalert::alert')
+@endsection
+<script>
+     $(document).ready(function () {
+        $('.edit-modal').on('hidden.bs.modal', function (e) {
+            console.log('Modal hidden event triggered.');
+            $(this).find('form')[0].reset();
+        });
+    });
+</script>
+
+
