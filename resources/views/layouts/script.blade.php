@@ -1,110 +1,94 @@
-<script src="{{ asset('assets') }}/./assets/js/core/popper.min.js"></script>
-<script src="{{ asset('assets') }}/./assets/js/core/bootstrap.min.js"></script>
-<script src="{{ asset('assets') }}/./assets/js/plugins/perfect-scrollbar.min.js"></script>
-<script src="{{ asset('assets') }}/./assets/js/plugins/smooth-scrollbar.min.js"></script>
-<script src="{{ asset('assets') }}/./assets/js/plugins/chartjs.min.js"></script>
-<script>
-    var ctx1 = document.getElementById("chart-line").getContext("2d");
-
-    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-
-    gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-    gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-    gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-    new Chart(ctx1, {
-        type: "line",
-        data: {
-            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            datasets: [{
-                label: "Mobile apps",
-                tension: 0.4,
-                borderWidth: 0,
-                pointRadius: 0,
-                borderColor: "#5e72e4",
-                backgroundColor: gradientStroke1,
-                borderWidth: 3,
-                fill: true,
-                data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                maxBarThickness: 6
-
-            }],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false,
-                }
-            },
-            interaction: {
-                intersect: false,
-                mode: 'index',
-            },
-            scales: {
-                y: {
-                    grid: {
-                        drawBorder: false,
-                        display: true,
-                        drawOnChartArea: true,
-                        drawTicks: false,
-                        borderDash: [5, 5]
-                    },
-                    ticks: {
-                        display: true,
-                        padding: 10,
-                        color: '#fbfbfb',
-                        font: {
-                            size: 11,
-                            family: "Open Sans",
-                            style: 'normal',
-                            lineHeight: 2
-                        },
-                    }
-                },
-                x: {
-                    grid: {
-                        drawBorder: false,
-                        display: false,
-                        drawOnChartArea: false,
-                        drawTicks: false,
-                        borderDash: [5, 5]
-                    },
-                    ticks: {
-                        display: true,
-                        color: '#ccc',
-                        padding: 20,
-                        font: {
-                            size: 11,
-                            family: "Open Sans",
-                            style: 'normal',
-                            lineHeight: 2
-                        },
-                    }
-                },
-            },
-        },
-    });
-</script>
+<!-- Required vendors -->
+    <script src="{{ asset('assets') }}/./vendor/global/global.min.js"></script>
+    <script src="{{ asset('assets') }}/./js/quixnav-init.js"></script>
+    <script src="{{ asset('assets') }}/./js/custom.min.js"></script>
 
 
+    <!-- Vectormap -->
+    <script src="{{ asset('assets') }}/./vendor/raphael/raphael.min.js"></script>
+    <script src="{{ asset('assets') }}/./vendor/morris/morris.min.js"></script>
+
+
+    <script src="{{ asset('assets') }}/./vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="{{ asset('assets') }}/./vendor/chart.js/Chart.bundle.min.js"></script>
+
+    <script src="{{ asset('assets') }}/./vendor/gaugeJS/dist/gauge.min.js"></script>
+
+    <!--  flot-chart js -->
+    <script src="{{ asset('assets') }}/./vendor/flot/jquery.flot.js"></script>
+    <script src="{{ asset('assets') }}/./vendor/flot/jquery.flot.resize.js"></script>
+
+    <!-- Owl Carousel -->
+    <script src="{{ asset('assets') }}/./vendor/owl-carousel/js/owl.carousel.min.js"></script>
+
+    <!-- Counter Up -->
+    <script src="{{ asset('assets') }}/./vendor/jqvmap/js/jquery.vmap.min.js"></script>
+    <script src="{{ asset('assets') }}/./vendor/jqvmap/js/jquery.vmap.usa.js"></script>
+    <script src="{{ asset('assets') }}/./vendor/jquery.counterup/jquery.counterup.min.js"></script>
+
+
+    <script src="{{ asset('assets') }}/./js/dashboard/dashboard-1.js"></script>
+
+        <!-- Required vendors -->
+    <script src="{{ asset('assets') }}/./vendor/global/global.min.js"></script>
+    <script src="{{ asset('assets') }}/./js/quixnav-init.js"></script>
+    <script src="{{ asset('assets') }}/./js/custom.min.js"></script>
+    
+
+
+    <!-- Datatable -->
+    <script src="{{ asset('assets') }}/./vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('assets') }}/./js/plugins-init/datatables.init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Dashboard -->
+    <!-- Vectormap -->
+    <script src="{{ asset('assets') }}/./vendor/raphael/raphael.min.js"></script>
+    <script src="{{ asset('assets') }}/./vendor/morris/morris.min.js"></script>
+
+
+    <script src="{{ asset('assets') }}/./vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="{{ asset('assets') }}/./vendor/chart.js/Chart.bundle.min.js"></script>
+
+    <script src="{{ asset('assets') }}/./vendor/gaugeJS/dist/gauge.min.js"></script>
+
+    <!--  flot-chart js -->
+    <script src="{{ asset('assets') }}/./vendor/flot/jquery.flot.js"></script>
+    <script src="{{ asset('assets') }}/./vendor/flot/jquery.flot.resize.js"></script>
+
+    <!-- Owl Carousel -->
+    <script src="{{ asset('assets') }}/./vendor/owl-carousel/js/owl.carousel.min.js"></script>
+
+    <!-- Counter Up -->
+    <script src="{{ asset('assets') }}/./vendor/jqvmap/js/jquery.vmap.min.js"></script>
+    <script src="{{ asset('assets') }}/./vendor/jqvmap/js/jquery.vmap.usa.js"></script>
+    <script src="{{ asset('assets') }}/./vendor/jquery.counterup/jquery.counterup.min.js"></script>
+
+
+    <script src="{{ asset('assets') }}/./js/dashboard/dashboard-1.js"></script>
+     <!-- End Dashboard -->
 
 <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-        var options = {
-            damping: '0.5'
-        }
-        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    function validateForm() {
+    var id_user = document.getElementById('id_user').value;
+    var id_produk = document.getElementById('id_produk').value;
+    var nama_pemesan = document.getElementById('nama_pemesan').value;
+    var alamat = document.getElementById('alamat').value;
+    var no_hp = document.getElementById('no_hp').value;
+    var jumlah = document.getElementById('jumlah').value;
+    var total_harga = document.getElementById('total_harga').value;
+
+    // Periksa apakah bidang-bidang yang diperlukan diisi
+    if (id_user === '' || id_produk === '' || nama_pemesan === '' || alamat === '' || no_hp === '' || jumlah === '' || total_harga === '') {
+        // Menampilkan pesan kesalahan
+        document.getElementById('error-message').style.display = 'block';
+        return false; // Mencegah pengiriman formulir jika ada bidang yang kosong
+    } else {
+        // Menyembunyikan pesan kesalahan jika semua bidang terisi
+        document.getElementById('error-message').style.display = 'none';
+        return true; // Lanjutkan pengiriman formulir jika semua bidang terisi
     }
-</script>
-<!-- Github buttons -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="{{ asset('assets') }}/./assets/js/argon-dashboard.min.js?v=2.0.4"></script>
-<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+}
 </script>
 
 

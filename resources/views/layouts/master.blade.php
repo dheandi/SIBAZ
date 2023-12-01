@@ -1,201 +1,110 @@
-<!--
-=========================================================
-* Argon Dashboard 2 - v2.0.4
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-    <title>
-        @yield('title')
-    </title>
-    <!--     Fonts and icons     -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    @yield('title')
+    
     @include('layouts.styles')
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
-    @include('layouts.asidebar')
-    <main class="main-content position-relative border-radius-lg ">
-        <!-- Navbar -->
-        @include('layouts.navbar')
+<body>
 
-        @yield('content')
-        <!-- End Navbar -->
-        {{-- <div class="container-fluid py-4">
-            <div class="row">
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Money</p>
-                                        <h5 class="font-weight-bolder">
-                                            $53,000
-                                        </h5>
-                                        <p class="mb-0">
-                                            <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                            since yesterday
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                                        <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Users</p>
-                                        <h5 class="font-weight-bolder">
-                                            2,300
-                                        </h5>
-                                        <p class="mb-0">
-                                            <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                            since last week
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                                        <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">New Clients</p>
-                                        <h5 class="font-weight-bolder">
-                                            +3,462
-                                        </h5>
-                                        <p class="mb-0">
-                                            <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                            since last quarter
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                                        <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Sales</p>
-                                        <h5 class="font-weight-bolder">
-                                            $103,430
-                                        </h5>
-                                        <p class="mb-0">
-                                            <span class="text-success text-sm font-weight-bolder">+5%</span> than last
-                                            month
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
-                                        <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <a href="index.html" class="brand-logo">
+                <img class="logo-abbr" src="{{ asset('assets') }}/./images/logo.png" alt="">
+                <img class="logo-compact" src="{{ asset('assets') }}/./images/logo-text.png" alt="">
+                <img class="brand-title" src="{{ asset('assets') }}/./images/logo-text.png" alt="">
+            </a>
+
+            <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col-lg-7 mb-lg-0 mb-4">
-                    <div class="card z-index-2 h-100">
-                        <div class="card-header pb-0 pt-3 bg-transparent">
-                            <h6 class="text-capitalize">Sales overview</h6>
-                            <p class="text-sm mb-0">
-                                <i class="fa fa-arrow-up text-success"></i>
-                                <span class="font-weight-bold">4% more</span> in 2021
-                            </p>
-                        </div>
-                        <div class="card-body p-3">
-                            <div class="chart">
-                                <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="card card-carousel overflow-hidden h-100 p-0">
-                        <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
-                            <div class="carousel-inner border-radius-lg h-100">
-                                <div class="carousel-item h-100 active"
-                                    style="background-image: url('./assets/img/carousel-1.jpg');
-      background-size: cover;">
-                                    <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                        <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                            <i class="ni ni-camera-compact text-dark opacity-10"></i>
-                                        </div>
-                                        <h5 class="text-white mb-1">Get started with Argon</h5>
-                                        <p>There’s nothing I really wanted to do in life that I wasn’t able to get good
-                                            at.</p>
-                                    </div>
-                                </div>
-                                <div class="carousel-item h-100"
-                                    style="background-image: url('./assets/img/carousel-2.jpg');
-      background-size: cover;">
-                                    <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                        <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                            <i class="ni ni-bulb-61 text-dark opacity-10"></i>
-                                        </div>
-                                        <h5 class="text-white mb-1">Faster way to create web pages</h5>
-                                        <p>That’s my skill. I’m not really specifically talented at anything except for
-                                            the ability to learn.</p>
-                                    </div>
-                                </div>
-                                <div class="carousel-item h-100"
-                                    style="background-image: url('./assets/img/carousel-3.jpg');
-      background-size: cover;"> --}}
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        @include('layouts.navbar')
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        @include('layouts.asidebar')
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        @yield('content')
+        <!--**********************************
+            Content body end
+        ***********************************-->
 
 
-        <!--   Core JS Files   -->
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        @include('layouts.footer')
+        <!--**********************************
+            Footer end
+        ***********************************-->
 
-        @include('layouts.script')
+        <!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+        <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+    </div>
+    
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    @include('layouts.script')
+
 </body>
 
 </html>

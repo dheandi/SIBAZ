@@ -25,30 +25,6 @@ public function getAllData1()
 
 public function createData(Request $request) 
 {
-    $validator = Validator::make($request->all(), [ 
-        'id_user' => 'required',
-        'id_produk' => 'required',
-        'nama_pemesan' => 'required',
-        'jumlah' => 'required',
-        'alamat' => 'required',
-        'no_hp' => 'required',
-        'total_harga' => 'required',
-    ], [
-        'id_user.required' => 'Form produk tidak boleh kosong',
-        'id_produk.required' => 'Form deskripsi tidak boleh kosong',
-        'nama_pemesan' => 'Form nama pemesan wajib diisi ',
-        'jumlah' => 'wajib di isi',
-        'alamat' => 'Wajib diisi ',
-        'no_hp' => 'Wajib diisi',
-        'total_harga' => 'wajib ',
-    ]);
-
-    if ($validator->fails()) { 
-        $message = $validator->errors()->all();
-        Alert::error('Gagal', $message);
-        return redirect()->back();
-    }
-
     $data = new DataPesanan();
     $data->id_user = $request->input('id_user');
     $data->id_produk = $request->input('id_produk');

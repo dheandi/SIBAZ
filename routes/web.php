@@ -17,19 +17,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/dasboard', function(){
+Route::get('/', function(){
     return view('admin.dashboard');
 });
 
-// Route::get('/tambahmenu', function(){
-//     return view('admin.');
-// });
-
-Route::get('/tambahmenu', function(){
-    return view('admin/tambahMenu');
+Route::get('/dataPesanan', function(){
+    return view('admin.dataPesanan');
 });
 
-Route::prefix('dataPesanan/')->controller(DataPesanaController::class)->group(function () {
+Route::get('/tambahanggota', function(){
+    return view('admin.tambahAnggota');
+});
+
+Route::prefix('/dataPesanan')->controller(DataPesanaController::class)->group(function () {
     Route::get('/', 'getAllData');
     Route::get('/dasboard', 'getAllData2');
     Route::post('/createdatapesanan', 'createData')->name('tambahdata');
